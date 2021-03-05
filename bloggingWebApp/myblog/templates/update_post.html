@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Update blog
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% if user.id == post.author.id %}
+            <div class = "mb-3">
+                <form method = 'POST'>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class = "btn btn-secondary">
+                        Update
+                    </button>
+                </form>
+            </div>
+        {% else %}
+            You're not allowed here! (And you know it...)
+        {% endif %}
+    {% else %}
+            You're not allowed here! (And you know it...)
+    {% endif %}
+{% endblock %}
